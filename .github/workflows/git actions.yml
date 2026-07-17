@@ -1,0 +1,21 @@
+name: Lightweight CI Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code Base
+      uses: actions/checkout@v4
+
+    - name: Set up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Run Basic Diagnostics
+      run: |
+        echo "Starting sanity check..."
+        python -c "import math_utils; print('Code compiled successfully!')"
