@@ -1,21 +1,23 @@
-name: Lightweight CI Workflow
+name: Simple CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - feature-login
+      - feature-footer
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code Base
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python Environment
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Show Repository Files
+        run: ls -la
 
-    - name: Run Basic Diagnostics
-      run: |
-        echo "Starting sanity check..."
-        python -c "import math_utils; print('Code compiled successfully!')"
+      - name: Display Success Message
+        run: echo "GitHub Actions workflow executed successfully!"
